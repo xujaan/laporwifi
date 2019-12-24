@@ -12,12 +12,12 @@ Aplikasi lapor gangguan jaringan wifi di kampus UMM
 
 # Aplikasi ini Menggunakan
 
-![alt text](https://pngimage.net/wp-content/uploads/2018/06/jquery-logo-png-4.png "Jquery")
-![alt text](http://www.pngmart.com/files/7/PHP-Transparent-PNG.png "PHP")
-![alt text](https://upload.wikimedia.org/wikipedia/commons/6/61/HTML5_logo_and_wordmark.svg "HTML")
-![alt text](https://upload.wikimedia.org/wikipedia/id/a/a9/MySQL.png "MySQL")
-![alt text](http://pluspng.com/img-png/logo-javascript-png-file-javascript-logo-png-1052.png "Javascript")
-![alt text](https://syndicode.com/wp-content/uploads/2018/01/Bootrap4-arrived-e1516612818493.png "Bootstrap")
+![alt text](https://pngimage.net/wp-content/uploads/2018/06/jquery-logo-png-4.png "Jquery" | width=100)
+![alt text](http://www.pngmart.com/files/7/PHP-Transparent-PNG.png "PHP" | width=100)
+![alt text](https://upload.wikimedia.org/wikipedia/commons/6/61/HTML5_logo_and_wordmark.svg "HTML" | width=100)
+![alt text](https://upload.wikimedia.org/wikipedia/id/a/a9/MySQL.png "MySQL" | width=100)
+![alt text](http://pluspng.com/img-png/logo-javascript-png-file-javascript-logo-png-1052.png "Javascript" | width=100)
+![alt text](https://syndicode.com/wp-content/uploads/2018/01/Bootrap4-arrived-e1516612818493.png "Bootstrap" | width=100)
 
 
 
