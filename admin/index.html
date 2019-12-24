@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="../assets/css/bootstrap.min.css">
+    <title>Lapor Wifi</title>
+</head>
+
+<body>
+    <!-- <body style="background-color: #dff6f0;"> -->
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-9 col-sm-12 col-lg-9 col-xs-12 animated fadeInUp ">
+                <!-- <img src="https://infokhs.umm.ac.id/images/logo.png" alt="" class="mt-4"> -->
+                <div class="card mt-2 bg-light card-login">
+                    <div class="card-body">
+                        <button class="btn btn-sm btn-primary float-right" onclick="getdata()">Update</button>
+                        <h5 class=" mb-4">Admin Monitor</h5>
+                        <div id="isi"></div>
+                    </div>
+                </div>
+            </div>
+            <!-- <div class="col-md-3 col-sm-12 col-lg-3 col-xs-12 animated fadeInUp text-center">
+                <div class="card mt-2 bg-light card-login">
+                    <div class="card-body">
+                        <h5 class="text-center text-danger mb-4">Laporan Terbaru</h5>
+                    </div>
+                </div>
+            </div> -->
+        </div>
+    </div>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="../assets/js/jquery-3.3.1.min.js"></script>
+    <script src="../assets/js/popper.min.js"></script>
+    <script src="../assets/js/bootstrap.min.js"></script>
+    <script>
+        getdata();
+        setInterval(function () {
+            getdata();
+        }, 1000);
+
+        function getdata() {
+            $.getJSON('../apps/konfigurasi.php?admin=1', function (res) {
+                $('#isi').empty();
+                for (var i = 0; i < res.length; i++) {
+                    var card = `<div class="card text-white mb-2 p-0">
+                            <div class="card-body">
+                                <p class='p-0 m-0'>Pelapor:<b> ` + res[i]['nama_mahasiswa'] + ` (` + res[i][
+                        'jurusan_mahasiswa'
+                    ] + `)</b></p>
+                                <p class='p-0 m-0'>Jenis:<b> ` + res[i]['jenis_laporan'] + `</b></p>
+                                <p class='p-0 m-0'>Laporan:<b> ` + res[i]['isi_laporan'] + `<b></p>
+                            </div></div>`;
+                    $('#isi').append(card);
+                }
+                console.log(res);
+            });
+        }
+    </script>
+</body>
+
+</html>

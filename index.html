@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+    <title>Lapor Wifi</title>
+</head>
+
+<body>
+    <!-- <body style="background-color: #dff6f0;"> -->
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-6 col-sm-12 col-lg-4 col-xs-12 animated fadeInUp text-center">
+                <img src="https://infokhs.umm.ac.id/images/logo.png" alt="" class="mt-4">
+                <div class="card mt-2 bg-light card-sukses" style="display: none;">
+                    <div class="card-body">
+                        <h5 class="text-success">Terimakasih telah melapor.</h5>
+                    </div>
+                </div>
+                <div class="card mt-2 bg-light card-login">
+                    <div class="card-body">
+                        <h2 class="text-center text-danger mb-4">Lapor Wifi</h2>
+                        <div class="form-group">
+                            <input type="text" class="form-control" id="nim" placeholder="NIM" name="username"
+                                autofocus="true">
+                        </div>
+                        <div class="form-group mb-0">
+                            <input type="password" class="form-control" id="pic" placeholder="PIC" name="password">
+                        </div>
+                        <button onclick="getinfokhs()" type="button"
+                            class="btn btn-danger mt-2 float-right">Lanjut</button>
+                    </div>
+                </div>
+                <div style="display: none;" class="alert alert-dismissible alert-primary my-2 alert-salah">NIM atau PIC
+                    yang Anda masukkan salah.</div>
+                <div class="card mt-2 bg-light card-form" style="display: none;">
+                    <div class="card-body text-left">
+                        <table class="table table-borderless table-sm">
+                            <tr>
+                                <td>NIM</td>
+                                <td>:</td>
+                                <td><b id="nim1"></b></td>
+                            </tr>
+                            <tr>
+                                <td>Nama</td>
+                                <td>:</td>
+                                <td><b id="nama"></b></td>
+                            </tr>
+                            <tr>
+                                <td>Fakultas</td>
+                                <td>:</td>
+                                <td><b id="fak"></b></td>
+                            </tr>
+                            <tr>
+                                <td>Jurusan</td>
+                                <td>:</td>
+                                <td><b id="jur"></b></td>
+                            </tr>
+                        </table>
+                        <!-- <h2 class="text-center text-primary mb-3 mt-3">Isi Keluhan</h2> -->
+                        <div class="form-group">
+                            <label for="">Lokasi Wifi : </label>
+                            <input type="text" class="form-control" placeholder="Contoh: Ruang 5.20 GKB 4" id="lokasi">
+                        </div>
+                        <div class="form-group">
+                            <label for="">Jenis Laporan : </label>
+                            <select name="" id="jenis" class="form-control">
+                                <option value="Tidak dapat menyambung ke Wifi">Tidak dapat menyambung ke Wifi</option>
+                                <option value="Tidak dapat login ke Portal">Tidak dapat login ke Portal</option>
+                                <option value="Jaringan lambat">Jaringan lambat</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="">Detail Laporan : </label>
+                            <textarea placeholder="Tulis laporan atau keluhan Anda" name="" id="isi" cols="5" rows="10"
+                                class="form-control"></textarea>
+                        </div>
+                        <button class="btn btn-danger float-right" onclick="sendlaporan()">Lapor</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="assets/js/jquery-3.3.1.min.js"></script>
+    <script src="assets/js/popper.min.js"></script>
+    <script src="assets/js/bootstrap.min.js"></script>
+    <script>
+        function getinfokhs() {
+            var nim = $('#nim').val();
+            var pic = $('#pic').val();
+            $.getJSON('apps/infokhs.php?nim=' + nim + '&password=' + pic, function (res) {
+                console.log(res);
+                if (res.khs_login == "true") {
+                    $('.card-login').hide();
+                    $('.card-form').show();
+                    $('.card-sukses').hide();
+                    $('#nim1').html(res.khs_nim);
+                    $('#nama').html(res.khs_namalengkap);
+                    $('#fak').html(res.khs_fakultas);
+                    $('#jur').html(res.khs_jurusan);
+                    $('.alert-salah').hide()
+                } else {
+                    $('.alert-salah').show()
+                }
+            });
+        }
+
+        function sendlaporan() {
+            var nim = $('#nim1').html();
+            var lokasi = $('#lokasi').val();
+            var jenis = $('#jenis').val();
+            var isi = $('#isi').val();
+            $.getJSON('apps/konfigurasi.php', {
+                lapor: '1',
+                nim: nim,
+                lokasi: lokasi,
+                jenis: jenis,
+                isi: isi
+            }, function (e) {
+                if (e.status == 'sukses') {
+                    $('.card-login').hide();
+                    $('.card-form').hide();
+                    $('.card-sukses').show();
+                }
+            })
+
+        }
+    </script>
+</body>
+
+</html>
