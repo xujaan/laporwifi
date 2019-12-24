@@ -8,7 +8,7 @@ Aplikasi lapor gangguan jaringan wifi di kampus UMM
 - Keempat buat database laporwifi dan import file database **laporwifi.sql** ke db laporwifi pada db server.<br>
 - Kelima ubah pengaturan koneksi db pada file __apps/konfigurasi.php__.<br>
 <br>
-### Setelah selesai semua mulai web server dan db server, dan akses pada localhost Anda.<br>
+### Setelah selesai semua mulai web server dan db server, dan akses pada localhost Anda.
 
 # Aplikasi ini Menggunakan
 
